@@ -7,31 +7,39 @@ const defaultCartState ={
     totalAmount : 0,
 }
 
-const cartReducer = (state,action)=>{
-    if(action.type === 'ADD_ITEM_TO_CART'){
-          const updatedItems = state.items.concat(action.item);
-          const newTotalAmount =  state.totalAmount + action.item.price * action.item.amount;
-          return {
-            items :updatedItems,
-            totalAmount :newTotalAmount,
-          }
-    }
-    if(action.type === 'REMOVE_ITEM_TO_CART'){
+const cartReducer = (state, action) => {
 
-    }
-     return defaultCartState
-}
+  if (action.type === "ADD") {
+    const updatedItems = state.items.concat(action.item);
+    const updatedTotalAmount = state.totalAmount + (action.item.price * action.item.amount);
+    console.log(updatedTotalAmount)
+
+    return {
+      items: updatedItems,
+      totalAmount: updatedTotalAmount,
+    };
+
+  }
+
+  if (action.type === "REMOVE") {
+  }
+
+  return defaultCartState;
+
+};
 
 const CartProvider = (props) => {
-     const [cartState , dispatchCartAction]=  useReducer(cartReducer, defaultCartState)
+
+
+  const [cartState , dispatchCartAction]=  useReducer(cartReducer, defaultCartState)
         
          
   const addItemToCartHandler = (item) => {
-    dispatchCartAction({type : "ADD_ITEM_TO_CART", item:item})
+    dispatchCartAction({type : "ADD", item: item})
   };
 
   const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({type : "REMOVE_ITEM_TO_CART", id : id})
+    dispatchCartAction({type : "REMOVE", id : id})
   };
 
   const cartContext = {

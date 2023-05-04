@@ -6,8 +6,10 @@ import classes from "./Cart.module.css";
 const Cart = props => {
   const cartCtx = useContext(CartContext)
 
-  const TotalAmount = `	₹${cartCtx.totalAmount.toFixed(2)}`
-  const hasItem = cartCtx.hasItem > 0 
+  console.log(cartCtx)
+
+  const TotalAmount = `	₹${cartCtx.totalAmount.toFixed(2)}`;
+  const hasItem = cartCtx.items.length > 0 
 
   const cartItem = (
     <ul className={classes['cart-items']}>
